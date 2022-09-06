@@ -1,0 +1,52 @@
+{
+  "name": "老板电器数据上传金蝶系统",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "upload.png",
+      "32": "upload.png",
+      "48": "upload.png",
+      "128": "upload.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery-3.6.0.slim.min.js"]
+    },
+    {
+      "matches": ["https://106.112.217.84:55055/main/gxhb"],
+      "js": ["content-script.js"],
+      "css":["kingdee.css"]
+    },
+    {
+      "matches":["https://cloud.kingdee.com/qy/product/proInfo?tid=*"],
+      "js": ["kingdee-test.js"]
+    },
+    {
+      "matches":["http://fx.hzrobam.com/*"],
+      "js": ["upload_stock.js"]
+    }
+  ],
+  "icons": {
+    "16": "upload.png",
+    "32": "upload.png",
+    "48": "upload.png",
+    "128": "upload.png"
+  },
+  "web_accessible_resources":[{
+    "resources":["iframe.html"],
+    "matches": ["<all_urls>"]
+  },{
+    "resources":["spinner_progress.gif"],
+    "matches": ["<all_urls>"]
+  }],
+  "host_permissions": ["https://*/","http://*/"]
+}
